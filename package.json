@@ -1,0 +1,28 @@
+{
+  "name": "babel-plugin-promote-class-properties",
+  "version": "0.0.1",
+  "description": "Babel plugin to replace old code using ClassProperties feature",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzarcon/babel-plugin-promote-class-properties.git"
+  },
+  "author": "zzarcon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zzarcon/babel-plugin-promote-class-properties/issues"
+  },
+  "homepage": "https://github.com/zzarcon/babel-plugin-promote-class-properties#readme",
+  "devDependencies": {
+    "babel-identifiers": "^1.1.1",
+    "babel-plugin-tester": "^4.0.0",
+    "flow-bin": "^0.54.0",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "babel-type-scopes": "^1.0.0"
+  }
+}

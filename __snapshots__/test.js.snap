@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1. promote-class-properties 1`] = `
+"
+class Foo {
+  constructor() {
+    this.bar = this.bar.bind(this);
+  }
+
+  bar() {
+    const miau = 1;
+  }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Foo {
+  constructor() {}
+
+  bar = \\"before\\";
+}
+"
+`;
