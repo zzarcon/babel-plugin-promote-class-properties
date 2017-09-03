@@ -17,7 +17,33 @@ class Foo {
 class Foo {
   constructor() {}
 
-  bar = \\"before\\";
+  bar = () => {
+    const miau = 1;
+  };
+}
+"
+`;
+
+exports[`2. promote-class-properties 1`] = `
+"
+class Foo {
+  constructor() {
+    this.bar = this.bar.bind(this);
+  }
+
+  bar(arg1) {
+    const miau = 1;
+  }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Foo {
+  constructor() {}
+
+  bar = () => {
+    const miau = 1;
+  };
 }
 "
 `;

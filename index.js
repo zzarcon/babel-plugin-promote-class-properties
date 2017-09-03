@@ -12,28 +12,11 @@ module.exports = ({ types: t }) => ({
       );
 
       if (bindedProp) {
-        t
-        // debugger
-        // path.replaceWith(
-        //   t.classProperty(methodName)
-        // );
-        // t.classProperty(methodName)
-        console.log(t.classProperty('a', 1))
-        debugger
-        // path.replaceWith(t.classMethod('method', t.identifier('bar'), [], path.node.body));
-        // path.replaceWith(t.expressionStatement(t.stringLiteral('before')));
-        path.replaceWith(t.classProperty(t.identifier('bar'), t.stringLiteral('before')))
-        // path.replaceWithSourceString(`a = () => 1`);
-        // path.insertBefore();
+        const body = path.get("body");
+        path.replaceWith(
+          t.classProperty(t.identifier(methodName), t.arrowFunctionExpression([], body.node))
+        );
       }
-      // if (path.node.kind === 'constructor') {
-        // console.log('constructor')
-      // }
-    },
-    Identifier(path) {
-      // console.log(t)
-      // console.log('identifier')
-      // idPath.node.name = idPath.node.name.split('').reverse().join('')
     },
     AssignmentExpression(path) {
       const left = path.node.left;
@@ -51,10 +34,6 @@ module.exports = ({ types: t }) => ({
         const isInsideConstructor = path.getFunctionParent().node.kind === 'constructor';
 
         if (isRightThisExp && isBindCall && isInsideConstructor && leftPropName === rightPropName) {
-          getIdentifierKind
-          console.log('replace');
-          t
-          debugger
           classPropertiesToReplace.push({
             parent: parent.parent,
             name: leftPropName
@@ -62,10 +41,6 @@ module.exports = ({ types: t }) => ({
           path.remove();
         }
       }
-      // console.log(path.node)
-      // console.log(path.getFunctionParent())
-      // console.log('AssignmentExpression', path.parent.parent.type)
-      // console.log()
     }
   }
 });

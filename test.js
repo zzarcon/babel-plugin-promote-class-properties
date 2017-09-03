@@ -14,6 +14,19 @@ const tests = [{
       }
     }
   `
+}, {
+  snapshot: true,
+  code: `
+    class Foo {
+      constructor() {
+        this.bar = this.bar.bind(this);
+      }
+
+      bar(arg1) {
+        const miau = 1;
+      }
+    }
+  `
 }];
 
 pluginTester({
