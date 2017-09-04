@@ -3,6 +3,8 @@ const promoteClassProperties = require('.');
 
 const tests = [{
   snapshot: true,
+  skip: true,
+  title: 'basic',
   code: `
     class Foo {
       constructor() {
@@ -16,14 +18,30 @@ const tests = [{
   `
 }, {
   snapshot: true,
+  title: 'method with args',
   code: `
     class Foo {
       constructor() {
-        this.bar = this.bar.bind(this);
+        this.methodWithArgs = this.methodWithArgs.bind(this);
       }
 
-      bar(arg1) {
-        const miau = 1;
+      methodWithArgs(arg1, arg2) {
+        console.log(arg1, arg2)
+      }
+    }
+  `
+}, {
+  snapshot: true,
+  title: 'not binded',
+  only: true,
+  code: `
+    class Foo {
+      constructor() {
+        this.notBinded = this.notBinded();
+      }
+
+      notBinded() {
+        return 1;
       }
     }
   `

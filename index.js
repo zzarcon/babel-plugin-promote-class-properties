@@ -13,8 +13,9 @@ module.exports = ({ types: t }) => ({
 
       if (bindedProp) {
         const body = path.get("body");
+
         path.replaceWith(
-          t.classProperty(t.identifier(methodName), t.arrowFunctionExpression([], body.node))
+          t.classProperty(t.identifier(methodName), t.arrowFunctionExpression(path.node.params, body.node))
         );
       }
     },
@@ -27,7 +28,7 @@ module.exports = ({ types: t }) => ({
       if (isLeftThisExp && isRightCallExp) {
         const isRightThisExp = t.isThisExpression(right.callee.object.object);
         const isBindCall = right.callee.property.name === 'bind';
-        const classProp = right.callee.object.property
+        const classProp = right.callee.object.property;
         const leftPropName = left.property.name;
         const rightPropName = classProp.name;
         const parent = path.getFunctionParent();

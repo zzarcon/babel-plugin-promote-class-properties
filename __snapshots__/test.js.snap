@@ -47,3 +47,51 @@ class Foo {
 }
 "
 `;
+
+exports[`method with args 1`] = `
+"
+class Foo {
+  constructor() {
+    this.methodWithArgs = this.methodWithArgs.bind(this);
+  }
+
+  methodWithArgs(arg1, arg2) {
+    console.log(arg1, arg2)
+  }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Foo {
+  constructor() {}
+
+  methodWithArgs = (arg1, arg2) => {
+    console.log(arg1, arg2);
+  };
+}
+"
+`;
+
+exports[`method with args 2`] = `
+"
+class Foo {
+  constructor() {
+    this.methodWithArgs = this.methodWithArgs.bind(this);
+  }
+
+  notBinded(arg1, arg2) {
+    console.log(arg1, arg2)
+  }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Foo {
+  constructor() {}
+
+  notBinded(arg1, arg2) {
+    console.log(arg1, arg2);
+  }
+}
+"
+`;
