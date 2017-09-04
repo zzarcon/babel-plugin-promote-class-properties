@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`1. promote-class-properties 1`] = `
+exports[`basic 1`] = `
 "
 class Foo {
   constructor() {
@@ -8,30 +8,6 @@ class Foo {
   }
 
   bar() {
-    const miau = 1;
-  }
-}
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-class Foo {
-  constructor() {}
-
-  bar = () => {
-    const miau = 1;
-  };
-}
-"
-`;
-
-exports[`2. promote-class-properties 1`] = `
-"
-class Foo {
-  constructor() {
-    this.bar = this.bar.bind(this);
-  }
-
-  bar(arg1) {
     const miau = 1;
   }
 }
@@ -68,30 +44,6 @@ class Foo {
   methodWithArgs = (arg1, arg2) => {
     console.log(arg1, arg2);
   };
-}
-"
-`;
-
-exports[`method with args 2`] = `
-"
-class Foo {
-  constructor() {
-    this.methodWithArgs = this.methodWithArgs.bind(this);
-  }
-
-  notBinded(arg1, arg2) {
-    console.log(arg1, arg2)
-  }
-}
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-class Foo {
-  constructor() {}
-
-  notBinded(arg1, arg2) {
-    console.log(arg1, arg2);
-  }
 }
 "
 `;

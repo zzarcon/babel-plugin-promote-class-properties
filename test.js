@@ -3,7 +3,6 @@ const promoteClassProperties = require('.');
 
 const tests = [{
   snapshot: true,
-  skip: true,
   title: 'basic',
   code: `
     class Foo {
@@ -31,9 +30,8 @@ const tests = [{
     }
   `
 }, {
-  snapshot: true,
+  snapshot: false,
   title: 'not binded',
-  only: true,
   code: `
     class Foo {
       constructor() {
@@ -41,6 +39,22 @@ const tests = [{
       }
 
       notBinded() {
+        return 1;
+      }
+    }
+  `
+}, {
+  snapshot: false,
+  title: 'bind outer method',
+  code: `
+    const outerMethod = () => {};
+
+    class Foo {
+      constructor() {
+        this.outerMethod = outerMethod.bind(this);
+      }
+
+      outerMethod() {
         return 1;
       }
     }

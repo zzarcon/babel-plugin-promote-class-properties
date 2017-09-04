@@ -15,7 +15,10 @@ module.exports = ({ types: t }) => ({
         const body = path.get("body");
 
         path.replaceWith(
-          t.classProperty(t.identifier(methodName), t.arrowFunctionExpression(path.node.params, body.node))
+          t.classProperty(
+            t.identifier(methodName),
+            t.arrowFunctionExpression(path.node.params, body.node)
+          )
         );
       }
     },
@@ -29,17 +32,20 @@ module.exports = ({ types: t }) => ({
         const isRightThisExp = t.isThisExpression(right.callee.object.object);
         const isBindCall = right.callee.property.name === 'bind';
         const classProp = right.callee.object.property;
-        const leftPropName = left.property.name;
-        const rightPropName = classProp.name;
-        const parent = path.getFunctionParent();
-        const isInsideConstructor = path.getFunctionParent().node.kind === 'constructor';
 
-        if (isRightThisExp && isBindCall && isInsideConstructor && leftPropName === rightPropName) {
-          classPropertiesToReplace.push({
-            parent: parent.parent,
-            name: leftPropName
-          });
-          path.remove();
+        if (classProp) {
+          const leftPropName = left.property.name;
+          const rightPropName = classProp.name;
+          const parent = path.getFunctionParent();
+          const isInsideConstructor = path.getFunctionParent().node.kind === 'constructor';
+
+          if (isRightThisExp && isBindCall && isInsideConstructor && leftPropName === rightPropName) {
+            classPropertiesToReplace.push({
+              parent: parent.parent,
+              name: leftPropName
+            });
+            path.remove();
+          }
         }
       }
     }
