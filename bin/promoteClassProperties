@@ -1,3 +1,19 @@
 #!/usr/bin/env node
 
-// TODO: use babel-codemod to transform code
+const {exec} = require('child_process');
+const {join} = require('path');
+const src = process.argv[2] || '.';
+const pluginPath = join(__dirname, '../index.js');
+const codeModBin = join(__dirname, '../node_modules/.bin/codemod');
+const command = `${codeModBin} --plugin ${pluginPath} ${src}`;
+
+console.log(command)
+
+exec(command, (error, stdout, stderr) => {
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  console.log(stdout);
+});
