@@ -30,6 +30,21 @@ const tests = [{
     }
   `
 }, {
+  // TODO: Fix this case
+  snapshot: true,
+  title: 'method before constructor',
+  code: `
+    class Foo {
+      bar() {
+        console.log(1)
+      }
+
+      constructor() {
+        this.bar = this.bar.bind(this);
+      }
+    }
+  `
+}, {
   snapshot: false,
   title: 'not binded',
   code: `
@@ -55,6 +70,20 @@ const tests = [{
       }
 
       outerMethod() {
+        return 1;
+      }
+    }
+  `
+}, {
+  snapshot: false,
+  title: 'local bind',
+  code: `
+    class Foo {
+      constructor() {
+        const foo = this.foo.bind(this);
+      }
+
+      foo() {
         return 1;
       }
     }

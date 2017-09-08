@@ -24,6 +24,30 @@ class Foo {
 "
 `;
 
+exports[`method before constructor 1`] = `
+"
+class Foo {
+  bar() {
+    console.log(1)
+  }
+
+  constructor() {
+    this.bar = this.bar.bind(this);
+  }
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Foo {
+  bar() {
+    console.log(1);
+  }
+
+  constructor() {}
+}
+"
+`;
+
 exports[`method with args 1`] = `
 "
 class Foo {
