@@ -1,0 +1,7 @@
+__fixtures__
+__snapshots__
+coverage
+.flowconfig
+.travis.yml
+README.md
+test.js
