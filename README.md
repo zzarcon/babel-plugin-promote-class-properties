@@ -38,6 +38,17 @@ class Foo {
 
 # Installation
 
+```
+$ yarn add babel-plugin-promote-class-properties -D
+```
+
+# Usage
+
+```
+$ promoteClassProperties ./src
+
+```
+
 # Motivation
 
 Declaring event listeners is a common thing to do on the daily bases of every JS developer.

@@ -7,8 +7,6 @@ const pluginPath = join(__dirname, '../index.js');
 const codeModBin = join(__dirname, '../node_modules/.bin/codemod');
 const command = `${codeModBin} --plugin ${pluginPath} ${src}`;
 
-console.log(command)
-
 exec(command, (error, stdout, stderr) => {
   if (error) {
     console.error(error);
